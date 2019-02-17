@@ -18,6 +18,9 @@ var axios = require("axios");
 // Moment
 var moment = require("moment");
 
+// FS
+var fs = require("fs");
+
 /*
 ==================================
 Global Variables
@@ -33,9 +36,9 @@ Function Declarations
 ==================================
 */
 
-function spotifySearch() {
+function spotifySearch(input) {
     spotify
-        .search({ type: 'track', query: userInput, limit: 1 })
+        .search({ type: 'track', query: input, limit: 1 })
         .then(function (response) {
             console.log(JSON.stringify(response, null, 2));
             console.log("Artist: " + response.tracks.items[0].album.artists[0].name);
@@ -48,8 +51,8 @@ function spotifySearch() {
         });
 }
 
-function concertSearch() {
-    axios.get("https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp")
+function concertSearch(input) {
+    axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp")
         .then(function (response) {
             console.log("Venue name: " + response.data[0].venue.name);
             console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
@@ -60,8 +63,8 @@ function concertSearch() {
         });
 }
 
-function movieSearch() {
-    axios.get("http://www.omdbapi.com/?apikey=7a69e743&t=" + userInput)
+function movieSearch(input) {
+    axios.get("http://www.omdbapi.com/?apikey=7a69e743&t=" + input)
         .then(function (response) {
             console.log("Title: " + response.data.Title);
             console.log("Release year: " + response.data.Year);
@@ -78,7 +81,12 @@ function movieSearch() {
 }
 
 function doWhatItSays() {
-
+    fs.readFile("./random.txt", (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        spotifySearch(data);
+    });
 }
 
 /*
@@ -89,13 +97,13 @@ Switch
 
 switch (command) {
     case "spotify-this-song":
-        spotifySearch();
+        spotifySearch(userInput);
         break;
     case "concert-this":
-        concertSearch();
+        concertSearch(userInput);
         break;
     case "movie-this":
-        movieSearch();
+        movieSearch(userInput);
         break;
     case "do-what-it-says":
         doWhatItSays();
