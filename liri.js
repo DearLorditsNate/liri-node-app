@@ -40,7 +40,6 @@ function spotifySearch(input) {
     spotify
         .search({ type: 'track', query: input, limit: 1 })
         .then(function (response) {
-            console.log(JSON.stringify(response, null, 2));
             console.log("Artist: " + response.tracks.items[0].album.artists[0].name);
             console.log("Song name: " + response.tracks.items[0].name);
             console.log("Album name: " + response.tracks.items[0].album.name);
@@ -85,7 +84,9 @@ function doWhatItSays() {
         if (err) {
             console.log(err);
         }
-        spotifySearch(data);
+        var params = data.toString().split(",");
+
+        actions(params[0], params[1]);
     });
 }
 
@@ -95,19 +96,30 @@ Switch
 ==================================
 */
 
-switch (command) {
-    case "spotify-this-song":
-        spotifySearch(userInput);
-        break;
-    case "concert-this":
-        concertSearch(userInput);
-        break;
-    case "movie-this":
-        movieSearch(userInput);
-        break;
-    case "do-what-it-says":
-        doWhatItSays();
-        break;
-    default:
-        return false;
+function actions(command, userInput) {
+    switch (command) {
+        case "spotify-this-song":
+            spotifySearch(userInput);
+            break;
+        case "concert-this":
+            concertSearch(userInput);
+            break;
+        case "movie-this":
+            movieSearch(userInput);
+            break;
+        case "do-what-it-says":
+            doWhatItSays();
+            break;
+        default:
+            return false;
+    }
 }
+
+/*
+==================================
+Function Calls
+==================================
+*/
+
+// Initialize Switch
+actions(command, userInput);
