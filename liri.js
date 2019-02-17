@@ -49,7 +49,15 @@ function spotifySearch() {
 }
 
 function concertSearch() {
-
+    axios.get("https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp")
+        .then(function (response) {
+            console.log("Venue name: " + response.data[0].venue.name);
+            console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
+            console.log("Event date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
+        })
+        .catch(function () {
+            console.log("That band isn't touring right now.");
+        });
 }
 
 function movieSearch() {
