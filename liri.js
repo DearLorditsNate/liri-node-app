@@ -78,6 +78,9 @@ function spotifySearch(userInput) {
                 name: "userInput"
             }
         ]).then(answer => {
+            if (!answer.userInput) {
+                answer.userInput = "The Sign, Ace of Base";
+            }
             spotify
                 .search({ type: 'track', query: answer.userInput, limit: 1 })
                 .then(function (response) {
@@ -153,6 +156,9 @@ function movieSearch(userInput) {
                 name: "userInput"
             }
         ]).then(answer => {
+            if (!answer.userInput) {
+                answer.userInput = "Mr. Nobody";
+            }
             axios.get("http://www.omdbapi.com/?apikey=7a69e743&t=" + answer.userInput)
                 .then(function (response) {
                     console.log("Title: " + response.data.Title);
