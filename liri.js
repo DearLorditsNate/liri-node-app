@@ -67,8 +67,9 @@ function spotifySearch(userInput) {
                 console.log("Preview link: " + response.tracks.items[0].preview_url);
                 followUp();
             })
-            .catch(function (err) {
-                console.log(err);
+            .catch(function () {
+                console.log("Sorry, I couldn't find that song. Please try asking again!");
+                actions("spotify-this-song");
             });
     } else {
         inquirer.prompt([
@@ -90,8 +91,9 @@ function spotifySearch(userInput) {
                     console.log("Preview link: " + response.tracks.items[0].preview_url);
                     followUp();
                 })
-                .catch(function (err) {
-                    console.log(err);
+                .catch(function () {
+                    console.log("Sorry, I couldn't find that song. Please try asking again!");
+                    actions("spotify-this-song");
                 });
         });
     }
@@ -107,7 +109,8 @@ function concertSearch(userInput) {
                 followUp();
             })
             .catch(function () {
-                console.log("That band isn't touring right now.");
+                console.log("That band isn't touring right now. Try moshing to another band!");
+                actions("concert-this");
             });
     } else {
         inquirer.prompt([
@@ -125,7 +128,8 @@ function concertSearch(userInput) {
                     followUp();
                 })
                 .catch(function () {
-                    console.log("That band isn't touring right now.");
+                    console.log("That band isn't touring right now. Try moshing to another band!");
+                    actions("concert-this");
                 });
         });
     }
@@ -146,7 +150,8 @@ function movieSearch(userInput) {
                 followUp();
             })
             .catch(function () {
-                console.log("That band isn't touring right now.");
+                console.log("This isn't the movie you're looking for... Try searching for something else!");
+                actions("movie-this");
             });
     } else {
         inquirer.prompt([
@@ -172,7 +177,8 @@ function movieSearch(userInput) {
                     followUp();
                 })
                 .catch(function () {
-                    console.log("That band isn't touring right now.");
+                    console.log("This isn't the movie you're looking for... Try searching for something else!");
+                    actions("movie-this");
                 });
         });
     }
