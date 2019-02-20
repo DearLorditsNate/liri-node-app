@@ -84,7 +84,7 @@ function doWhatItSays() {
         if (err) {
             console.log(err);
         }
-        var params = data.toString().split(",");
+        var params = data.toString().replace(/['"]+/g, '').split(",");
 
         actions(params[0], params[1]);
     });
