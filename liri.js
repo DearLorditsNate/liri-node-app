@@ -138,6 +138,9 @@ function getMovieInput(userInput) {
                 name: "userInput"
             }
         ]).then(answer => {
+            if (!answer.userInput) {
+                answer.userInput = "Mr. Nobody";
+            }
             movieSearch(answer.userInput);
         });
     }
