@@ -26,15 +26,6 @@ var inquirer = require("inquirer");
 
 /*
 ==================================
-Global Variables
-==================================
-*/
-
-var command = process.argv[2];
-var userInput = process.argv[3];
-
-/*
-==================================
 Function Declarations
 ==================================
 */
@@ -44,7 +35,7 @@ function initialize() {
         {
             type: "list",
             message: "Hello, I'm LIRI! What can I help you with today?",
-            choices: ["spotify-this-song", "concert-this", "movie-this", "do-what-it-says"],
+            choices: ["spotify-this-song", "concert-this", "movie-this", "do-what-it-says", "never-mind"],
             name: "command"
         }
     ]).then(answer => {
@@ -56,8 +47,8 @@ function followUp() {
     inquirer.prompt([
         {
             type: "list",
-            message: "Is there anything else I can do for you today?",
-            choices: ["spotify-this-song", "concert-this", "movie-this", "do-what-it-says"],
+            message: "Is there anything else I can do for you?",
+            choices: ["spotify-this-song", "concert-this", "movie-this", "do-what-it-says", "never-mind"],
             name: "command"
         }
     ]).then(answer => {
@@ -213,6 +204,9 @@ function actions(command, userInput) {
             break;
         case "do-what-it-says":
             doWhatItSays();
+            break;
+        case "never-mind":
+            console.log("Ok, I'm here when you need me!");
             break;
         default:
             return false;
