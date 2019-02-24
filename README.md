@@ -41,4 +41,4 @@ A Node.js CLI app that utilizes APIs to take user input and search for real-time
 ![do-what-it-says source](assets/readme-images/random-txt.png)
 
 **Log**
-![output log](assets/readme-images/do-what-it-says.png)
+![output log](assets/readme-images/log-txt.png)
