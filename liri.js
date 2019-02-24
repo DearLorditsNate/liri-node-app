@@ -26,6 +26,14 @@ var inquirer = require("inquirer");
 
 /*
 ==================================
+Global Variables
+==================================
+*/
+
+var log = [];
+
+/*
+==================================
 Function Declarations
 ==================================
 */
@@ -87,6 +95,11 @@ function spotifySearch(input) {
             console.log("Album name: " + response.tracks.items[0].album.name);
             console.log("Preview link: " + response.tracks.items[0].preview_url);
             console.log("========================\n")
+
+            log.push("Artist: " + response.tracks.items[0].album.artists[0].name + "\n", "Song name: " + response.tracks.items[0].name + "\n", "Album name: " + response.tracks.items[0].album.name + "\n", "Preview link: " + response.tracks.items[0].preview_url + "\n\n");
+            
+            writeLog();
+
             followUp();
         })
         .catch(function () {
@@ -121,6 +134,11 @@ function concertSearch(input) {
             console.log("Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
             console.log("Event date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"));
             console.log("========================\n")
+
+            log.push("Venue name: " + response.data[0].venue.name + "\n", "Venue location: " + response.data[0].venue.city + ", " + response.data[0].venue.country + "\n", "Event date: " + moment(response.data[0].datetime).format("MM/DD/YYYY") + "\n\n");
+
+            writeLog();
+
             followUp();
         })
         .catch(function () {
@@ -163,6 +181,11 @@ function movieSearch(input) {
             console.log("Actors: " + response.data.Actors);
             console.log("Plot: " + response.data.Plot);
             console.log("========================\n")
+
+            log.push("Title: " + response.data.Title + "\n", "Release year: " + response.data.Year + "\n", "IMDB Rating: " + response.data.Ratings[0].Value + "\n", "Rotten Tomatoes Rating: " + response.data.Ratings[1].Value + "\n", "Production Country: " + response.data.Country + "\n", "Language: " + response.data.Language + "\n", "Actors: " + response.data.Actors + "\n", "Plot: " + response.data.Plot + "\n\n");
+
+            writeLog();
+
             followUp();
         }).catch(function () {
             console.log("\nThis isn't the movie you're looking for... Try searching for something else!");
@@ -181,6 +204,15 @@ function doWhatItSays() {
 
         actions(params[0], params[1]);
     });
+}
+
+function writeLog() {
+    var toWrite = log.toString().replace(/[,]+/g, '');
+    fs.appendFile("./log.txt", toWrite, "UTF8", err => {
+        console.log(err);
+    });
+
+    log = [];
 }
 
 /*
