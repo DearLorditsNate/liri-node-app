@@ -2,5 +2,4 @@
 
 ## test image
 
-![spotify-output]
-(./assets/readme-images/spotify-output.png)
+![spotify-output](assets/readme-images/spotify-output.png)
