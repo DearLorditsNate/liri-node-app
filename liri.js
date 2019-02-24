@@ -30,6 +30,7 @@ Global Variables
 ==================================
 */
 
+// Stores current search log
 var log = [];
 
 /*
@@ -66,6 +67,7 @@ function followUp() {
 
 function getSpotifyInput(userInput) {
     var input;
+    // Checks for input from do-what-it-says
     if (userInput) {
         input = userInput;
         spotifySearch(input);
@@ -77,6 +79,7 @@ function getSpotifyInput(userInput) {
                 name: "userInput"
             }
         ]).then(answer => {
+            // Default for no input
             if (!answer.userInput) {
                 answer.userInput = "The Sign, Ace of Base";
             }
@@ -110,6 +113,7 @@ function spotifySearch(input) {
 
 function getConcertInput(userInput) {
     var input;
+    // Checks for input from do-what-it-says
     if (userInput) {
         input = userInput;
         concertSearch(input);
@@ -149,6 +153,7 @@ function concertSearch(input) {
 
 function getMovieInput(userInput) {
     var input;
+    // Checks for input from do-what-it-says
     if (userInput) {
         input = userInput;
         movieSearch(input);
@@ -160,6 +165,7 @@ function getMovieInput(userInput) {
                 name: "userInput"
             }
         ]).then(answer => {
+            // Default for no input
             if (!answer.userInput) {
                 answer.userInput = "Mr. Nobody";
             }
@@ -196,6 +202,7 @@ function movieSearch(input) {
 function doWhatItSays() {
     console.log("\nI am just a bot, after all! Here you go.");
 
+    // Reads random.txt | will work with any command/input available
     fs.readFile("./random.txt", (err, data) => {
         if (err) {
             console.log(err);
@@ -207,11 +214,14 @@ function doWhatItSays() {
 }
 
 function writeLog() {
+    // Removes commas
     var toWrite = log.toString().replace(/[,]+/g, '');
+
     fs.appendFile("./log.txt", toWrite, "UTF8", err => {
         console.log(err);
     });
 
+    // Reset log array to prevent dupes
     log = [];
 }
 
