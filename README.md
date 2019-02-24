@@ -1,4 +1,4 @@
-# liri-node-app
+# LIRI Node.js CLI App
 A Node.js CLI app that utilizes APIs to take user input and search for real-time information on songs, concerts, and movies.
 
 **Features include:**
@@ -13,7 +13,7 @@ A Node.js CLI app that utilizes APIs to take user input and search for real-time
 ## Workflow
 
 ### Video Demo
-[LIRI Demo]()
+[LIRI Demo](https://youtu.be/Ru-dd_VgaQU)
 
 ### Examples
 **spotify-this output**
@@ -39,9 +39,6 @@ A Node.js CLI app that utilizes APIs to take user input and search for real-time
 
 **do-what-it-says source**
 ![do-what-it-says source](assets/readme-images/random-txt.png)
-
-**do-what-it-says**
-![spotify-output](assets/readme-images/do-what-it-says.png)
 
 **Log**
 ![output log](assets/readme-images/do-what-it-says.png)
