@@ -131,7 +131,7 @@ function getConcertInput(userInput) {
 }
 
 function concertSearch(input) {
-    axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp")
+    axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=" + keys.bandsInTown.app_id)
         .then(function (response) {
             console.log("\n========================")
             console.log("Venue name: " + response.data[0].venue.name);
@@ -175,7 +175,7 @@ function getMovieInput(userInput) {
 }
 
 function movieSearch(input) {
-    axios.get("http://www.omdbapi.com/?apikey=7a69e743&t=" + input)
+    axios.get("http://www.omdbapi.com/?apikey=" + keys.omdb.apikey + "&t=" + input)
         .then(function (response) {
             console.log("\n========================")
             console.log("Title: " + response.data.Title);
